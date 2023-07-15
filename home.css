@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #222;
+    color: #eeddff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+}
+
+.list{
+    display: flex;
+    flex-direction: column;
+    padding-top: 10vh;
+}
+
+.item{
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+a{
+    text-decoration: underline;
+    color: #ddbcff;
+}
