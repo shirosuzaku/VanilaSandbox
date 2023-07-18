@@ -64,6 +64,7 @@ p{
     font-size: 40px;
 }
 
+/* MAIN */
 main{
     top: 0;
     position: absolute;
@@ -77,6 +78,8 @@ main{
     transition: left 400ms;
 }
 
+
+/* SECTION */
 section.active{
     height: 100vh;
     overflow-y: auto;
@@ -94,6 +97,8 @@ section{
     border-radius: 15px;
     padding-bottom: 15vh;
 }
+
+/* TEXT */
 section.active h2{
     position: relative;
     top: 0;
@@ -105,6 +110,9 @@ h2{
 h5{
     font-size: 30px;
 }
+
+
+/* IMAGE */
 section.active img{
     height: auto;
 }
@@ -112,10 +120,21 @@ section img{
     transition: all 400ms ease-in-out;
     width: 100%;
     height: auto;
+    /* transform: translateX(25%); */
+}
+
+
+/* BUTTON */
+#ba:hover,#fr:hover,#resizeOnLeave{
+    cursor: pointer;
 }
 #ba,#fr,#resizeOnLeave{
     position: fixed;
-    top: 30px;
+    top: 17.5vh;
+    background-color: #22222200;
+    border: none;
+    color: #22222200;
+    bottom: 17.5vh;
     z-index: 21;
 }
 #resizeOnLeave{
@@ -123,8 +142,61 @@ section img{
     top: 90%;
 }
 #fr{
-    right: 20px;
+    right: 0px;
 }
 #ba{
-    left: 20px;
+    left: 0px;
+}
+
+@media screen {
+
+    .page::before{
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 10vw;
+        z-index: -20;
+        background-image: linear-gradient(90deg,var(--clr-100),var(--clr-101));   
+    }
+    .page::after{
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: 10vw;
+        z-index: -20;
+        background-image: linear-gradient(-90deg,var(--clr-100),var(--clr-101));   
+    }
+
+
+    /* SECTION */
+    section{
+        transition: all 400ms ease-in-out;
+    }
+    
+
+    /* IMG */
+    section img{
+        transition: all 400ms ease-in-out;
+        height: 70vh;
+        width: fit-content;
+        /* transform: translateX(-25%); */
+    }
+    section.active img{
+        height: auto;
+        margin-top: 10vh;
+    }
+
+}
+@media (max-width: 700px) {
+    /* BUTTON HIDE */
+    #ba,#fr,#resizeOnLeave{
+        position: fixed;
+        top: 30px;
+        z-index: -21;
+    }
+    
 }
