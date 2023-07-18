@@ -53,13 +53,11 @@ mainData.map((el)=>{
     createProject(el.imgUrl,el.title,el.bio,el.paragrap)
 })
 
-
-btnfr.addEventListener('click',()=>{
+const moveForward = () => {
     if(pageIdex != mainData.length){
         horizontalOffset -= 86
         mainList.style.left = `${horizontalOffset}vw`
         pageIdex++
-        console.log(mainList.children)
         if(resizeOnLeave){
             var children = mainList.children
             for (let i = 0; i < children.length; i++) {
@@ -69,8 +67,8 @@ btnfr.addEventListener('click',()=>{
             }
         }
     }
-})
-btnba.addEventListener('click',()=>{
+}
+const moveBack = ()=> {
     if(pageIdex != 1){
         horizontalOffset += 86
         mainList.style.left = `${horizontalOffset}vw`
@@ -83,7 +81,10 @@ btnba.addEventListener('click',()=>{
             }
         }
     }
-})
+}
+
+btnfr.addEventListener('click', moveForward)
+btnba.addEventListener('click', moveBack)
 
 btnResize.addEventListener('click',()=>{
     resizeOnLeave = !resizeOnLeave
@@ -94,3 +95,57 @@ mainList.addEventListener('click',e=>{
     && e.srcElement.parentElement.classList.add('active') 
 })
 
+
+// TOUCH Handler
+document.addEventListener('touchstart', handleTouchStart, false);        
+document.addEventListener('touchmove', handleTouchMove, false);
+
+var xDown = null;                                                        
+var yDown = null;
+
+function getTouches(evt) {
+  return evt.touches ||             // browser API
+         evt.originalEvent.touches; // jQuery
+}                                                     
+                                                                         
+function handleTouchStart(evt) {
+    const firstTouch = getTouches(evt)[0];                                      
+    xDown = firstTouch.clientX;                                      
+    yDown = firstTouch.clientY;                                      
+};                                                
+                                                                         
+function handleTouchMove(evt) {
+    if ( ! xDown || ! yDown ) {
+        return;
+    }
+
+    var xUp = evt.touches[0].clientX;                                    
+    var yUp = evt.touches[0].clientY;
+
+    var xDiff = xDown - xUp;
+    var yDiff = yDown - yUp;
+                                                                         
+    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+        if ( xDiff > 0 ) {
+            /* right swipe */ 
+            console.log("swipe right")
+            moveForward()
+        } else {
+            /* left swipe */
+            console.log("swipe left")
+            moveBack()
+        }                       
+    } else {
+        if ( yDiff > 0 ) {
+            /* down swipe */ 
+            console.log("swipe down")
+
+        } else { 
+            /* up swipe */
+            console.log("swipe up")
+        }                                                                 
+    }
+    /* reset values */
+    xDown = null;
+    yDown = null;                                             
+};
