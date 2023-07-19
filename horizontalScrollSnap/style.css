@@ -1,0 +1,27 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.main{
+    display: flex;
+    width: fit-content;
+    /* overflow-x: auto; */
+
+}
+html{
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 10vw;
+    overflow-x: auto;
+
+}
+.section{
+    width: 80vw;
+    height: 80vh;
+    margin: 0 10vw;
+    background-color: #222;
+
+    scroll-snap-align: start;
+}
+.section:nth-child(even){
+    background-color: #555;
+}
